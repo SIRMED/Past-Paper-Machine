@@ -8,7 +8,7 @@ Clone this repository into you local folder. Make sure it is empty and has only 
 1) Make sure Python is installed and the required librarires:
    - reuests
    - colorama
-   - concurrent.futures
+   You can install them by running `pip install -r requirements.txt` in the command line
 2) Open your terminal in the folder where the python files is located and type in `python "past paper machine.py"` which will start the script
 3) Select which subjects you want to download past papers of by writing their subject codes and seperating them each with a comma then hit enter
 4) It will ask you a final conformation to start the download process in which you have to type `Y` then press enter
