@@ -13,13 +13,5 @@ Clone this repository into you local folder. Make sure it is empty and has only 
 4) It will ask you a final conformation to start the download process in which you have to type `Y` then press enter
 5) They will start downloading and you will see which ones are downloading right now and any errors if they occur
 
-# The program is not working/ working too slowly
-The speed depends on your network speed and WiFi connection. The program installs the files using parallel processing. 5 requests will be made to the server for the files and be downloaded at 5 second intervals. This might cause some issues and if it does you can change this block of code to your needs:
-```
-with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
-        executor.map(request_download_paper, papers_to_download) 
-```
-This will download the files one by one by waiting for the previous file to download then sending the next request for the download
-
 # Services used
 Past Papers are retrived from the website [PapaCambridge](https://papacambridge.com/). Big thanks to them for providing this service for free for all students worldwide. I made this tool to keep local copies of Past Papers so I can solce them locally using a stylus and save them which is not possible online
