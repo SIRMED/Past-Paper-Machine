@@ -55,6 +55,9 @@ def paper_year(PAPER_SESSION):
     return PAPER_YEAR
 
 def download_past_paper(SUBJECT_CODE, PAPER_SESSION, PAPER_TYPE, PAPER_NUMBER):
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'
+    }
     url = f"https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/{SUBJECT_CODE}_{PAPER_SESSION}_{PAPER_TYPE}_{PAPER_NUMBER}.pdf#view=FitH"
     
     #extract the second number from PAPER_NUMBER, eg 4 from 34
@@ -68,7 +71,7 @@ def download_past_paper(SUBJECT_CODE, PAPER_SESSION, PAPER_TYPE, PAPER_NUMBER):
     os.makedirs(download_path, exist_ok=True)
 
     # Download the file in chunks
-    with requests.get(url, stream=True) as r:
+    with requests.get(url, stream=True, headers=headers) as r:
         r.raise_for_status()
         with open(os.path.join(download_path, custom_filename), 'wb') as f:
             for chunk in r.iter_content(chunk_size=8192): 
