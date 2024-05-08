@@ -1,6 +1,5 @@
 import os
 import requests
-import concurrent.futures
 import time
 
 def request_download_paper(paper):
@@ -62,7 +61,7 @@ def download_past_paper(SUBJECT_CODE, PAPER_SESSION, PAPER_TYPE, PAPER_NUMBER):
     PAPER_VARIANT = PAPER_NUMBER[1]
     PAPER_NUMBER_FIRSTONE = PAPER_NUMBER[0]
 
-    custom_filename = f"{SUBJECT_CODE} {paper_session_to_name(PAPER_SESSION)} 20{paper_year(PAPER_SESSION)} V{PAPER_VARIANT} {PAPER_TYPE}.pdf"
+    custom_filename = f"{SUBJECT_CODE} - 20{paper_year(PAPER_SESSION)} {paper_session_to_name(PAPER_SESSION)} V{PAPER_VARIANT} {PAPER_TYPE}.pdf"
     
     # Creating directory if it doesn't exist
     download_path = f"./Past Papers/{SUBJECT_CODE} {subject_code_to_name(SUBJECT_CODE)}/Paper {PAPER_NUMBER_FIRSTONE}"
@@ -228,8 +227,8 @@ def download_all_papers(subject_codes, syllabus_type, practical_type, paper_year
 
     print(f"Downloading {len(papers_to_download)} papers...")
 
-    with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
-        executor.map(request_download_paper, papers_to_download)    
+    for paper in papers_to_download:
+        request_download_paper(paper)
     
     end_time = time.time()
     elapsed_time = end_time - start_time
